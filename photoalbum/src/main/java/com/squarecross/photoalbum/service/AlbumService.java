@@ -13,12 +13,21 @@ public class AlbumService {
     @Autowired
     private AlbumRepository albumRepository;
 
-    public Album getAlbum(Long albumId){
+    public Album getIdAlbum(Long albumId){
         Optional<Album> res = albumRepository.findById(albumId);
         if(res.isPresent()){
             return res.get();
         }else{
             throw new EntityNotFoundException(String.format("앨범 아이디 %d로 조회되지 않았습니다.", albumId));
+        }
+    }
+
+    public Album getNameAlbum(String albumName){
+        Optional<Album> res = albumRepository.findByAlbumName(albumName);
+        if(res.isPresent()){
+            return res.get();
+        }else{
+            throw new EntityNotFoundException(String.format("앨범 이름 %s로 조회되지 않았습니다.", albumName));
         }
     }
 }

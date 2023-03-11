@@ -20,12 +20,22 @@ class AlbumServiceTest {
     AlbumService albumService;
 
     @Test
-    void getAlbum() {
+    void getIdAlbum() {
         Album album = new Album();
         album.setAlbumName("테스트");
         Album savedAlbum = albumRepository.save(album);
 
-        Album resAlbum = albumService.getAlbum(savedAlbum.getAlbumId());
+        Album resAlbum = albumService.getIdAlbum(savedAlbum.getAlbumId());
+        assertEquals("테스트", resAlbum.getAlbumName());
+    }
+
+    @Test
+    void getNameAlbum() {
+        Album album = new Album();
+        album.setAlbumName("테스트");
+        Album savedAlbum = albumRepository.save(album);
+
+        Album resAlbum = albumService.getNameAlbum(savedAlbum.getAlbumName());
         assertEquals("테스트", resAlbum.getAlbumName());
     }
 }
